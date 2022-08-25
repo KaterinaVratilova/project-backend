@@ -1,0 +1,5 @@
+server:
+  port: 8080
+
+jwt:
+  secret: zluteprasatkoslodolesa585858
