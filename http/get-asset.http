@@ -1,0 +1,2 @@
+GET http://localhost:8080/api/v1/assets/7fb7f44a-530c-4050-8fe7-ac0e71562163
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b21hcy5zdm9qYW5vdnNreTExQGdtYWlsLmNvbSIsImV4cCI6MTY2MTY5NDIyOSwiaWF0IjoxNjYxNjkwNjI5fQ.uuuJqpXnuwiLWyblO0J9xexJbZh4xC601cV-ty5AVIcgbNxZtLtWEyy-TvBWnH4-jFaDdJhOI0qOf5lnpgkaXw

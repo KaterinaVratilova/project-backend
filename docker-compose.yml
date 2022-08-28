@@ -7,7 +7,7 @@ services:
     networks:
       - db
     volumes:
-      - ./students.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./etoro.sql:/docker-entrypoint-initdb.d/schema.sql
     env_file:
       - .env
     environment:
