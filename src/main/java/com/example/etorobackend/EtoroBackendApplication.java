@@ -1,5 +1,10 @@
 package com.example.etorobackend;
 
+import com.example.etorobackend.assets.entities.AssetEntity;
+import com.example.etorobackend.assets.entities.AssetTypeEntity;
+import com.example.etorobackend.assets.enums.AssetTypes;
+import com.example.etorobackend.assets.repositories.AssetRepository;
+import com.example.etorobackend.assets.repositories.AssetTypeRepository;
 import com.example.etorobackend.roles.entities.RoleEntity;
 import com.example.etorobackend.roles.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +23,19 @@ public class EtoroBackendApplication {
 
 	private final RoleRepository roleRepository;
 
+	private final AssetTypeRepository assetTypeRepository;
+
+	private final AssetRepository assetRepository;
+
 	@Autowired
-	public EtoroBackendApplication(RoleRepository roleRepository) {
+	public EtoroBackendApplication(
+			RoleRepository roleRepository,
+			AssetTypeRepository assetTypeRepository,
+			AssetRepository assetRepository
+	) {
 		this.roleRepository = roleRepository;
+		this.assetTypeRepository = assetTypeRepository;
+		this.assetRepository = assetRepository;
 	}
 
 	public static void main(String[] args) {
@@ -50,6 +65,22 @@ public class EtoroBackendApplication {
 						new RoleEntity("ADMIN"),
 						new RoleEntity("USER_BASIC"),
 						new RoleEntity("USER_ADVANCED")
+				));
+
+				assetTypeRepository.saveAll(List.of(
+						new AssetTypeEntity(AssetTypes.STOCKS),
+						new AssetTypeEntity(AssetTypes.CRYPTO),
+						new AssetTypeEntity(AssetTypes.INDICES),
+						new AssetTypeEntity(AssetTypes.ETFS),
+						new AssetTypeEntity(AssetTypes.COMMODITIES),
+						new AssetTypeEntity(AssetTypes.CURRENCIES)
+				));
+
+				var stocks = assetTypeRepository.findByType(AssetTypes.STOCKS);
+
+				assetRepository.saveAll(List.of(
+					new AssetEntity("INTEL", "INTC", stocks),
+					new AssetEntity("Coca-cola", "KO", stocks)
 				));
 			} catch (Exception e) {
 
