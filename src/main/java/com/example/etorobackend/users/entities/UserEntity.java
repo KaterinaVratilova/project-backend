@@ -25,6 +25,10 @@ public class UserEntity {
     )
     @Column(name = "user_id")
     private UUID id;
+
+    @Column(name = "username", unique = true)
+    private String username;
+
     @Column(name = "email", unique = true)
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
@@ -100,5 +104,13 @@ public class UserEntity {
 
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -10,6 +10,7 @@ import com.example.etorobackend.auth.utils.JwtUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,7 @@ public class LoginController {
                             jwtRequest.password()
                     )
             );
-        } catch (InternalAuthenticationServiceException e) {
+        } catch (BadCredentialsException | InternalAuthenticationServiceException e) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(new ErrorResponse(
