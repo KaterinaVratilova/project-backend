@@ -4,10 +4,7 @@ import com.example.etorobackend.assets.exceptions.AssetNotFoundException;
 import com.example.etorobackend.assets.services.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -27,5 +24,12 @@ public class GetController {
         var assets = assetService.getAll();
 
         return ResponseEntity.ok().body(assets);
+    }
+
+    @GetMapping("/assets/{name}")
+    public ResponseEntity<Object> getAsset(@PathVariable String name) throws AssetNotFoundException {
+        var asset = assetService.get(name);
+
+        return ResponseEntity.ok().body(asset);
     }
 }
