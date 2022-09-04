@@ -48,10 +48,9 @@ public class UserService {
         try {
             UserEntity user = new UserEntity();
 
+            user.setUsername(registerRequest.getUsername());
             user.setEmail(registerRequest.getEmail());
             user.setActive(true);
-            user.setFirstName(registerRequest.getFirstName());
-            user.setLastName(registerRequest.getLastName());
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
             RoleEntity userRole = roleRepository.findByRole("USER_BASIC");

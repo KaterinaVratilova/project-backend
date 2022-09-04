@@ -11,12 +11,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class RegisterRequest {
     @NotEmpty
-    @Size(min=2, max=50, message = "First name must be between 2 and 50 characters long")
-    private String firstName;
-
-    @NotEmpty
-    @Size(min=2, max=50, message = "Last name must be between 2 and 50 characters long")
-    private String lastName;
+    @Size(min=6, max=16, message = "Username must be between 6 and 16 characters long")
+    private String username;
 
     @NotEmpty(message = "Email is required")
     @Email(message = "Email must be valid")
@@ -26,20 +22,12 @@ public class RegisterRequest {
     @Size(min=8, max=100, message = "Password must be between 8 and 100 characters long")
     private String password;
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
