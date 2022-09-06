@@ -7,6 +7,7 @@ import com.example.etorobackend.common.codes.ErrorCodes;
 import com.example.etorobackend.users.entities.UserEntity;
 import com.example.etorobackend.users.services.UserService;
 import com.example.etorobackend.auth.utils.JwtUtils;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@Tag(name = "Auth")
 @RestController
 @RequestMapping(path ="api/v1")
 public class LoginController {

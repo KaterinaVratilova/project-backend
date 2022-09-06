@@ -4,6 +4,7 @@ import com.example.etorobackend.auth.models.ErrorResponse;
 import com.example.etorobackend.common.codes.ErrorCodes;
 import com.example.etorobackend.users.model.RegisterRequest;
 import com.example.etorobackend.users.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-
+@Tag(name = "User")
 @RestController
 @RequestMapping(path ="api/v1")
 public class RegisterController {
