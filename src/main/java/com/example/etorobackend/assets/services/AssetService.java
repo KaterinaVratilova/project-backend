@@ -34,11 +34,26 @@ public class AssetService {
      *  potom se da zavolat na optional .get a pak uz se s tim da normalne pracovat
      */
 
-    public AssetResponse get(String assetName) throws AssetNotFoundException {
+//    public AssetResponse get(String assetName) throws AssetNotFoundException {
+//        AssetEntity assetEntity = assetRepository
+//                .findAll()
+//                .stream()
+//                .filter(ae -> ae.getName().equals(assetName))
+//                .findAny()
+//                .orElse(null);
+//
+//        if (assetEntity == null) {
+//            throw new AssetNotFoundException("Asset not found.");
+//        }
+//
+//        return new AssetResponse(assetEntity.getId(), assetEntity.getName(), assetEntity.getShortName());
+//    }
+
+    public AssetResponse get(UUID id) throws AssetNotFoundException {
         AssetEntity assetEntity = assetRepository
                 .findAll()
                 .stream()
-                .filter(ae -> ae.getName().equals(assetName))
+                .filter(ae -> ae.getId().equals(id))
                 .findAny()
                 .orElse(null);
 
