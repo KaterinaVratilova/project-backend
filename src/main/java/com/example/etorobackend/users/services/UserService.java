@@ -34,11 +34,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserEntity findById(UUID id) throws Exception {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new Exception(String.format("User not found [%s]", id)));
-    }
-
     public UserEntity findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }

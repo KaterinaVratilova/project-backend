@@ -3,7 +3,7 @@ package com.example.etorobackend.feeds.services;
 import com.example.etorobackend.feeds.entities.FeedEntity;
 import com.example.etorobackend.feeds.model.FeedCreateRequest;
 import com.example.etorobackend.feeds.repositories.FeedRepository;
-import com.example.etorobackend.users.services.UserService;
+import com.example.etorobackend.users.services.UserGetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,12 @@ public class FeedService {
 
     private final FeedRepository feedRepository;
 
-    private final UserService userService;
+    private final UserGetService userGetService;
 
     @Autowired
-    public FeedService(FeedRepository feedRepository, UserService userService) {
+    public FeedService(FeedRepository feedRepository, UserGetService userGetService) {
         this.feedRepository = feedRepository;
-        this.userService = userService;
+        this.userGetService = userGetService;
     }
 
     public List<FeedEntity> getAll() {
@@ -28,7 +28,7 @@ public class FeedService {
     }
 
     public FeedEntity create(UUID userId, FeedCreateRequest request) throws Exception {
-        var user = this.userService.findById(userId);
+        var user = this.userGetService.findById(userId);
 
         return new FeedEntity(request.story(), user);
     }
