@@ -27,4 +27,18 @@ public class GetController {
 
         return ResponseEntity.ok().body(assets);
     }
+
+//    @GetMapping("/assets/{name}")
+//    public ResponseEntity<Object> getAsset(@PathVariable String name) throws AssetNotFoundException {
+//        var asset = assetService.get(name);
+//
+//        return ResponseEntity.ok().body(asset);
+//    }
+
+    @GetMapping("/assets/{id}")
+    public ResponseEntity<Object> getAsset(@PathVariable UUID id) throws AssetNotFoundException {
+        var asset = assetService.get(id);
+
+        return ResponseEntity.ok().body(asset);
+    }
 }
