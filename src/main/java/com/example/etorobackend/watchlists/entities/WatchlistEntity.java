@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "watchlists")
+@Table(name = "watchlists", uniqueConstraints = @UniqueConstraint(columnNames = {"label", "user_id"}))
 public class WatchlistEntity {
     @Id
     @GeneratedValue(generator = "UUID")
