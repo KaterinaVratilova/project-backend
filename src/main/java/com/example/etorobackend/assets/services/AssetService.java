@@ -1,10 +1,14 @@
 package com.example.etorobackend.assets.services;
 
 import com.example.etorobackend.assets.entities.AssetEntity;
+import com.example.etorobackend.assets.enums.SortEnum;
 import com.example.etorobackend.assets.exceptions.AssetNotFoundException;
 import com.example.etorobackend.assets.model.AssetResponse;
 import com.example.etorobackend.assets.repositories.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +25,24 @@ public class AssetService {
         this.assetRepository = assetRepository;
     }
 
-    public List<AssetResponse> getAll() {
-        return assetRepository.findAll().stream().map(asset -> {
+    public Page<AssetResponse> getAll(
+            Integer page,
+            Integer size,
+            SortEnum sort,
+            String search
+    ) {
+        var currentSort = sort == SortEnum.ASC ? Sort.by("name").ascending() : Sort.by("name").descending();
+        var pagination = PageRequest.of(page, size, currentSort);
+
+        if (search.isEmpty()) {
+            return assetRepository.findAll(pagination).map(asset -> {
+                return new AssetResponse(asset.getId(), asset.getName(), asset.getShortName());
+            });
+        }
+
+        return assetRepository.findByNameContainingIgnoreCase(search, pagination).map(asset -> {
             return new AssetResponse(asset.getId(), asset.getName(), asset.getShortName());
-        }).toList();
+        });
     }
 
     /*

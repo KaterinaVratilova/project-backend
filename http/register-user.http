@@ -2,8 +2,7 @@ POST http://localhost:8080/api/v1/user
 Content-Type: application/json
 
 {
-  "firstName": "Tomas",
-  "lastName": "Svojanovsky",
+  "username": "cleverMonkey21",
   "email": "tomas.svojanovsky11@gmail.com",
   "password": "123456789"
 }
