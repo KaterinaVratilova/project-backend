@@ -51,6 +51,11 @@ public class GetController {
         return ResponseEntity.ok().body(assets);
     }
 
+    @GetMapping("/assets/groups/{groupId}/type/{typeId}")
+    public ResponseEntity<Object> getByType() {
+        return ResponseEntity.ok().build();
+    }
+
 //    @GetMapping("/assets/{name}")
 //    public ResponseEntity<Object> getAsset(@PathVariable String name) throws AssetNotFoundException {
 //        var asset = assetService.get(name);
